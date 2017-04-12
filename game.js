@@ -11,7 +11,7 @@
 var Game = function()
 {
   // A unique ID for each player.
-  var playerCount = 0;
+  var playerCounter = 0;
 
   // A unique ID for each statistic.
   var statisticCounter = 0;
