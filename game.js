@@ -37,6 +37,70 @@ var Game = function()
     return playersWithState;
   }
 
+  /*
+   * Switches the states of two players (useful for making substitutions).
+   * Both players must exist in the players list.
+   */
+  this.switchPlayerStatus = function(player1, player2)
+  {
+    var oldPlayer1Status = players[player1];
+    players[player1] = players[player2];
+    players[player2] = oldPlayer1Status;
+  }
+
+  /*
+   * Add a player to the game. By default, this player is added in BENCH
+   * state.
+   */
+  this.addPlayer = function(firstName, lastName, capNumber)
+  {
+    var newPlayer = new Player(playerCount, firstName, lastName, capNumber);
+    this.players[newPlayer] = 'BENCH';
+    playerCount++;
+  }
+
+  /*
+   * Set the state of a player. The player must be in the players list and
+   * the state must be one of 'ACTIVE', 'GOALKEEPER' or 'BENCH'.
+   */
+  this.setPlayerState = function(player, state)
+  {
+    this.players[player] = state;
+  }
+
+  /*
+   * Returms true if the current team lineup is valid (i.e. there are 6 active
+   * players, 1 goalkeeper, and all other players are bench players).
+   */
+  this.checkValidTeam = function()
+  {
+    var activeCount = this.getPlayersWithState('ACTIVE').length;
+    var goalkeeperCount = this.getPlayersWithState('GOALKEEPER').length;
+    var benchCount = this.getPlayersWithState('BENCH').length;
+    var totalCount = activeCount + goalkeeperCount + benchCount;
+    return (
+      activeCount == 6
+        && goalkeeperCount == 1
+        && totalCount == this.players.length
+    );
+  }
+
+  /*
+   * Adds a statistic.
+   */
+  this.addStatistic = function(player, statisticType)
+  {
+    var newStatistic = new Statistic(
+      statisticCounter,
+      statisticType,
+      player,
+      null,
+      null
+    );
+    this.statistics.push(newStatistic);
+    statisticCounter++;
+  }
+
   /**
    * Get a string representation for the game.
    */
