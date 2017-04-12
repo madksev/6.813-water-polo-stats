@@ -3,13 +3,14 @@
  * number.
  */
 
-var Player = function(firstName, lastName, capNumber)
+var Player = function(id, firstName, lastName, capNumber)
 {
  ////////////////////////////////////////////////
  // Representation
  //
 
  // Immutable properties
+ Object.defineProperty(this, 'id', {value: id, writable: false});
  Object.defineProperty(this, 'firstName', {value: firstName, writable: false});
  Object.defineProperty(this, 'lastName', {value: lastName, writable: false});
 
