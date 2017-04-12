@@ -69,10 +69,10 @@ var Game = function()
   }
 
   /*
-   * Returms true if the current team lineup is valid (i.e. there are 6 active
+   * Returns true if the current team lineup is valid (i.e. there are 6 active
    * players, 1 goalkeeper, and all other players are bench players).
    */
-  this.checkValidTeam = function()
+  this.checkTeamIsValid = function()
   {
     var activeCount = this.getPlayersWithState('ACTIVE').length;
     var goalkeeperCount = this.getPlayersWithState('GOALKEEPER').length;
