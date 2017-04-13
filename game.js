@@ -11,14 +11,14 @@
 var Game = function()
 {
   // A unique ID for each player.
-  var playerCounter = 0;
+  var playerCount = 0;
 
   // A unique ID for each statistic.
   var statisticCounter = 0;
 
-  // The players: a dictionary mapping players to their state (ACTIVE,
-  // GOALKEEPER, BENCH).
-  this.players = {};
+  // The players: a dictionary mapping player states (ACTIVE,
+  // GOALKEEPER, BENCH) to arrays of players in those states.
+  this.players = {'BENCH':[], 'ACTIVE':[], 'GOALKEEPER':[]};
 
   // The statistic events collected for this game.
   this.statistics = [];
@@ -28,24 +28,23 @@ var Game = function()
    */
   this.getPlayersWithState = function(state)
   {
-    var playersWithState = [];
-    for (player in this.players) {
-      if (players[player] == state) {
-        playersWithState.push(player);
-      }
-    }
-    return playersWithState;
+    var selectedPlayers = this.players[state];
+    selectedPlayers.sort(function(a,b) {
+      return a.capNumber - b.capNumber;
+    });
+    return selectedPlayers;
   }
 
   /*
    * Switches the states of two players (useful for making substitutions).
    * Both players must exist in the players list.
    */
-  this.switchPlayerStatus = function(player1, player2)
+  this.switchPlayerStatus = function(player1, player1State, player2, player2State)
   {
-    var oldPlayer1Status = players[player1];
-    players[player1] = players[player2];
-    players[player2] = oldPlayer1Status;
+    this.players[player1State].splice(this.players[player1State].indexOf(player1), 1);
+    this.players[player2State].splice(this.players[player2State].indexOf(player2), 1);
+    this.players[player2State].push(player1);
+    this.players[player1State].push(player2);
   }
 
   /*
@@ -55,7 +54,7 @@ var Game = function()
   this.addPlayer = function(firstName, lastName, capNumber)
   {
     var newPlayer = new Player(playerCount, firstName, lastName, capNumber);
-    this.players[newPlayer] = 'BENCH';
+    this.players.BENCH.push(newPlayer);
     playerCount++;
   }
 
@@ -63,9 +62,10 @@ var Game = function()
    * Set the state of a player. The player must be in the players list and
    * the state must be one of 'ACTIVE', 'GOALKEEPER' or 'BENCH'.
    */
-  this.setPlayerState = function(player, state)
+  this.setPlayerState = function(player, oldState, newState)
   {
-    this.players[player] = state;
+    this.players[oldState].splice(this.players[oldState].indexOf(player), 1);
+    this.players[newState].push(player);
   }
 
   /*
