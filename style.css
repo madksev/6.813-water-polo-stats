@@ -1,0 +1,100 @@
+#mainContainer {
+	height: 700px;
+	width: 600px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#pool {
+	height: 45%;
+	border: 5px solid black;
+	border-bottom: 0px;
+}
+
+#players {
+	height: 20%;
+	border: 5px solid black;
+}
+
+#log {
+	height: 35%;
+	border: 5px solid black;
+	border-top: 0px;
+}
+
+#leftSide {
+	border-right: 2px dashed black;
+}
+
+#leftTwoMeter {
+	border-right: 1px dashed red;
+	position: relative;
+}
+
+#leftFiveMeter {
+	border-right: 2px solid yellow;
+}
+
+#rightFiveMeter {
+	border-left: 2px solid yellow;
+}
+
+#rightTwoMeter {
+	border-left: 1px dashed red;
+	position: relative;
+}
+
+#leftGoalieContainer {
+	margin-left: -45px;
+	white-space: nowrap;
+	transform: translateY(-50%) rotate(270deg);
+	transform-origin: center center;
+    -ms-transform-origin: center center; /* IE 9 */
+    -webkit-transform-origin: center center; /* Safari and Chrome */
+    -moz-transform-origin: center center; /* Firefox */
+    -o-transform-origin: center center; /* Opera */
+	position: absolute;
+	top: 50%;
+	text-align: center;
+}
+
+#switchSidesBtn {
+	margin-top: 5px;
+}
+
+#rightGoalieContainer {
+	white-space: nowrap;
+	position: absolute;
+	top: 50%;
+	text-align: center;
+	margin-right: 20px;
+	transform: translateY(-50%) translateX(-20px) rotate(90deg);
+	transform-origin: center center;
+    -ms-transform-origin: center center; /* IE 9 */
+    -webkit-transform-origin: center center; /* Safari and Chrome */
+    -moz-transform-origin: center center; /* Firefox */
+    -o-transform-origin: center center; /* Opera */
+}
+
+.player-btn {
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+}
+
+.player-name {
+	margin-right: -100%;
+	margin-left: -100%;
+	text-align: center;
+}
+
+#playersLabel {
+	margin-left: 5px;
+}
+
+#viewBenchBtn {
+	margin-right: 5px;
+	margin-left: auto;
+	height: 25px;
+	margin-top: 5px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Water Polo Stats</title>
+
+<link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+<link rel="stylesheet" href="style.css">
+
+<script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="game.js"></script>
+<script src="player.js"></script>
+<script src="statistic.js"></script>
+<script src="index.js"></script>
+
+</head>
+
+<body>
+  <div id="mainContainer" class="container">
+    <div id="pool" class="row">
+      <div id="leftTwoMeter" class="col-1">
+        <div id="leftGoalieContainer">
+          Your Goalie
+        </div>
+      </div>
+      <div id="leftFiveMeter" class="col-1">
+      </div>
+      <div id="leftSide" class="col-4">
+        <button id="switchSidesBtn" type="button" class="btn btn-secondary btn-sm">Switch Sides</button>
+      </div>
+      <div class="col-4">
+      </div>
+      <div id="rightFiveMeter" class="col-1">
+      </div>
+      <div id="rightTwoMeter" class="col-1">
+        <div id="rightGoalieContainer">
+        </div>
+      </div>
+    </div>
+    <div id="players" class="row">
+      <span id="playersLabel">Active Players</span>
+      <button id="viewBenchBtn" type="button" class="btn btn-secondary btn-sm">View Bench</button>
+      <div class="container" id="playersContainer">
+      </div>
+    </div>
+    <div id="log" class="row">
+      <div id="logHeadingContainer" class="container">
+        <h2 id="logHeading" class="text-center">Log</h2>
+      </div>
+      
+    </div>
+  </div>
+</body>
+
+</html>
