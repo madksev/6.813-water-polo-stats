@@ -1,19 +1,16 @@
-$(".log").on( 'mousewheel', function ( e ) {
-    var event = e.originalEvent,
-        d = event.wheelDelta || -event.detail;
-
-    this.scrollTop += ( d < 0 ? 1 : -1 ) * 30;
-    e.preventDefault();
-});
-
-
-function addToLog(action, time) {
+function addToLog(player, action, time) {
+  /*
+  Adds a log entry to the log as a new div
+  player: string or player object
+  action: string 
+  time: string
+  */
   var log = document.getElementById("logTable");
   var entry = createLogEntry(action, time);
   log.appendChild(entry);
 }
 
-function createLogEntry(action, time) {
+function createLogEntry(player, action, time) {
   var entry = document.createElement("div");
   //additional formatting goes here
   entry.className = "logEntry";
