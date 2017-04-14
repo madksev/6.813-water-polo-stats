@@ -18,6 +18,39 @@
 	height: 35%;
 	border: 5px solid black;
 	border-top: 0px;
+    display: block;
+    overflow: auto;
+}
+
+#logHeadingContainer {
+  background-color: lightgray;
+  border-top: 0px;
+  height: 40px;
+}
+
+#logTable {
+  width: 100%;
+  border-top: 0px;
+}
+
+.logEntry {
+  height: 40px;
+  width: 100%;
+  display: inline-block;
+  border: 1px solid gray;
+  
+}
+
+.logEntry-btn {
+  height: 20px;
+  width: 20px;
+  margin-top: 5px;
+  margin-right: 20px;
+  color: white;
+  background-color: indianred;
+  padding: 0;
+  display: inline-block;
+  float: right;
 }
 
 #leftSide {
