@@ -1,8 +1,6 @@
 #mainContainer {
 	height: 700px;
 	width: 600px;
-	margin-left: 0px;
-	margin-right: 0px;
 }
 
 #pool {
@@ -78,8 +76,10 @@
 
 .player-btn {
 	border-radius: 50%;
-	height: 80px;
-	width: 80px;
+	height: 72px;
+	width: 72px;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 .player-name {
