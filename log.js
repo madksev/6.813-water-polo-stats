@@ -6,7 +6,7 @@ function addToLog(player, action, time) {
   time: string
   */
   var log = document.getElementById("logTable");
-  var entry = createLogEntry(action, time);
+  var entry = createLogEntry(player, action, time);
   log.appendChild(entry);
 }
 
@@ -14,7 +14,7 @@ function createLogEntry(player, action, time) {
   var entry = document.createElement("div");
   //additional formatting goes here
   entry.className = "logEntry";
-  entry.innerHTML = action +" "+ time;
+  entry.innerHTML = player + " " + action +" "+ time;
   //add delete button
   var button = document.createElement("button");
   button.className = "btn btn-secondary btn-sm logEntry-btn";
