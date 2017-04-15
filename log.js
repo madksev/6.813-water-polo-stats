@@ -14,7 +14,21 @@ function createLogEntry(player, action, time) {
   var entry = document.createElement("div");
   //additional formatting goes here
   entry.className = "logEntry";
-  entry.innerHTML = player + " " + action +" "+ time;
+  //player
+  var playerDiv = document.createElement("div");
+  playerDiv.innerHTML = player;
+  playerDiv.className = "logEntry-player";
+  entry.appendChild(playerDiv);
+  //action
+  var actionDiv = document.createElement("div");
+  actionDiv.innerHTML = action;
+  actionDiv.className = "logEntry-action";
+  entry.appendChild(actionDiv);
+  //time
+  var timeDiv = document.createElement("div");
+  timeDiv.innerHTML = time;
+  timeDiv.className = "logEntry-time";
+  entry.appendChild(timeDiv);
   //add delete button
   var button = document.createElement("button");
   button.className = "btn btn-secondary btn-sm logEntry-btn";

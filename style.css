@@ -35,10 +35,10 @@
 
 .logEntry {
   height: 40px;
+  vertical-align: top;
   width: 100%;
   display: inline-block;
   border: 1px solid gray;
-  
 }
 
 .logEntry-btn {
@@ -51,6 +51,27 @@
   padding: 0;
   display: inline-block;
   float: right;
+}
+
+.logEntry-player {
+  width: 50%;
+  position: relative;
+  float: left;
+  margin-left: 2%;
+}
+
+.logEntry-action {
+  width: 30%;
+  position: relative;
+  float: left;
+  margin: 0;
+}
+
+.logEntry-time {
+  width: 10%;
+  position: relative;
+  float: left;
+  margin: 0;
 }
 
 #leftSide {
