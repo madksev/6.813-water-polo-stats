@@ -7,7 +7,6 @@ function addToLog(player, action, time) {
   */
   var log = document.getElementById("logTable");
   var entry = createLogEntry(player, action, time);
-  log.appendChild(entry);
 }
 
 function createLogEntry(player, action, time) {
