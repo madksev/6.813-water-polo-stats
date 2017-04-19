@@ -118,7 +118,7 @@ $(document).on('click', '.player-btn', function(evt) {
     } // else do nothing b/c no benched player selected
   } else {
     $('#dock').show();
-    $('#dockLabel').text(playerNumber + ' - ' + playerName);
+    $('#dockLabel').text('');
     $('#dockContainer').empty();
     var stat;
     for (i=0; i<STATISTIC_TYPES.length; i++) {
