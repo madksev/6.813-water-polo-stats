@@ -36,6 +36,20 @@ var Game = function()
   }
 
   /*
+   * Returns player with the given cap number and state. Null if wrong state.
+   */
+   this.getPlayerWithCap = function(playerNumber, playerState)
+   {
+     var possiblePlayers = this.players[playerState]
+     for (i=0; i<possiblePlayers.length; i++) {
+       if ( possiblePlayers[i].capNumber == playerNumber ) {
+         return possiblePlayers[i];
+       }
+     }
+     return null;
+   }
+
+  /*
    * Switches the states of two players (useful for making substitutions).
    * Both players must exist in the players list.
    */
