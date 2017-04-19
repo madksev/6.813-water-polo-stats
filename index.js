@@ -5,6 +5,7 @@ var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
 var ACTIVE_PLAYER_ID = null;
 var BENCHED_PLAYER_ID = null;
+var STATISTIC_ID = null;
 for (i=0; i<newPlayers.length; i++) {
   game.addPlayer(newPlayers[i][0], newPlayers[i][1], newPlayers[i][2]);
 }
@@ -152,6 +153,20 @@ $(document).on('click', '.benched-player-btn', function(evt) {
       switchPlayers(activePlayer, 'ACTIVE', benchedPlayer);
     }
   }
+
+});
+
+$(document).on('click', '.statistic-btn', function(evt) {
+
+  var statisticId = evt.currentTarget.id;
+  console.log(statisticId);
+  if ( STATISTIC_ID && STATISTIC_ID != statisticId ) {
+    $('#' + STATISTIC_ID).removeClass('btn-info');
+    $('#' + STATISTIC_ID).addClass('btn-outline-info');
+  }
+  STATISTIC_ID = statisticId;
+  $('#' + statisticId).addClass('btn-info');
+  $('#' + statisticId).removeClass('btn-outline-info');
 
 });
 
