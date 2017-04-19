@@ -1,5 +1,6 @@
 var GOALIE_LEFT = true;
-var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection received', 'ejection drawn'];
+var BENCH_OPEN = false;
+var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection-received', 'ejection-drawn'];
 var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
 var selectedPlayer = null;
@@ -52,19 +53,23 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 });
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
-  if ( !$('#dock').is(':visible') ) {
+  if ( !$('#dock').is(':visible') || selectedPlayer ) {
     $('#dock').show();
+    BENCH_OPEN = true;
+    selectedPlayer = null;
     $('#dockLabel').text('Bench');
     $('#dockContainer').empty();
     var inactivePlayers = game.getPlayersWithState('BENCH');
     for (i=0; i<inactivePlayers.length; i++) {
-      $('#dockContainer').append('<button type="button" class="btn btn-outline-danger benched-player-btn"><span>'+
+      $('#dockContainer').append('<button type="button" class="btn btn-outline-danger benched-player-btn"' +
+        'id="player-' + inactivePlayers[i].capNumber + '-' + inactivePlayers[i].lastName + '"><span>'+
         inactivePlayers[i].capNumber+'</span><br><span class="player-name">'+
         inactivePlayers[i].lastName+'</span></button>');
     }
   } else {
     $('#dock').hide();
     $('#dockContainer').empty();
+    BENCH_OPEN = false;
   }
 });
 
@@ -72,18 +77,27 @@ $(document).on('click', '.player-btn', function(evt) {
   var playerId = evt.currentTarget.id;
   var playerNumber = playerId.split('-')[1];
   var playerName = playerId.split('-')[2];
-  if ( !$('#dock').is(':visible') || playerId != selectedPlayer ) {
+  if ( BENCH_OPEN ) {
+    // add functionality for switching players
+  } else if ( !BENCH_OPEN && (!$('#dock').is(':visible') || playerId != selectedPlayer) ) {
     selectedPlayer = playerId;
     $('#dock').show();
     $('#dockLabel').text(playerNumber + ' - ' + playerName);
     $('#dockContainer').empty();
-
+    for (i=0; i<STATISTIC_TYPES.length; i++) {
+      var statID;
+      $('#dockContainer').append('<button type="button" class="btn btn-outline-info statistic-btn"' +
+        'id="stat-' + STATISTIC_TYPES[i] + '"><span>' +
+        STATISTIC_TYPES[i] + '</span></button>');
+    }
   } else {
-    // add functionality for switching players to bench
+    // is there another case?
   }
 });
 
 $(document).on('click', '#closeDockBtn', function(evt) {
   $('#dock').hide();
   $('#dockContainer').empty();
+  selectedPlayer = null;
+  BENCH_OPEN = false;
 })
