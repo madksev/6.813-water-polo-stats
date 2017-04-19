@@ -34,7 +34,7 @@ function createLogEntry(player, action, time) {
   button.className = "btn btn-secondary btn-sm logEntry-btn";
   button.innerHTML = "&#10006"
   entry.appendChild(button);
-  $(entry).on('click', function(e, info) {
+  $(button).on('click', function(e, info) {
     deleteLogEntry(entry);
   });
   return entry;
