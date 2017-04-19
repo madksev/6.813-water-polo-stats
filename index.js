@@ -3,7 +3,8 @@ var BENCH_OPEN = false;
 var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection-received', 'ejection-drawn'];
 var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
-var selectedPlayer = null;
+var ACTIVE_PLAYER = null;
+var BENCHED_PLAYER = null;
 for (i=0; i<newPlayers.length; i++) {
   game.addPlayer(newPlayers[i][0], newPlayers[i][1], newPlayers[i][2]);
 }
@@ -53,10 +54,14 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 });
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
-  if ( !$('#dock').is(':visible') || selectedPlayer ) {
+  if ( !BENCH_OPEN ) {
     $('#dock').show();
     BENCH_OPEN = true;
-    selectedPlayer = null;
+    if ( ACTIVE_PLAYER ) {
+      $('#' + ACTIVE_PLAYER).removeClass('btn-success');
+      $('#' + ACTIVE_PLAYER).addClass('btn-outline-success');
+    }
+    ACTIVE_PLAYER = null;
     $('#dockLabel').text('Bench');
     $('#dockContainer').empty();
     var inactivePlayers = game.getPlayersWithState('BENCH');
@@ -67,20 +72,26 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
         inactivePlayers[i].lastName+'</span></button>');
     }
   } else {
-    $('#dock').hide();
-    $('#dockContainer').empty();
-    BENCH_OPEN = false;
+    $('#closeDockBtn').trigger('click');
   }
 });
 
 $(document).on('click', '.player-btn', function(evt) {
   var playerId = evt.currentTarget.id;
+  if ( ACTIVE_PLAYER && ACTIVE_PLAYER != playerId ) {
+    $('#' + ACTIVE_PLAYER).removeClass('btn-success');
+    $('#' + ACTIVE_PLAYER).addClass('btn-outline-success');
+  }
+  ACTIVE_PLAYER = playerId;
+  $('#' + playerId).removeClass('btn-outline-success');
+  $('#' + playerId).addClass('btn-success');
   var playerNumber = playerId.split('-')[1];
   var playerName = playerId.split('-')[2];
   if ( BENCH_OPEN ) {
-    // add functionality for switching players
-  } else if ( !BENCH_OPEN && (!$('#dock').is(':visible') || playerId != selectedPlayer) ) {
-    selectedPlayer = playerId;
+    if ( BENCHED_PLAYER ) {
+      // do something
+    } // else do nothing b/c no benched player selected
+  } else {
     $('#dock').show();
     $('#dockLabel').text(playerNumber + ' - ' + playerName);
     $('#dockContainer').empty();
@@ -90,14 +101,32 @@ $(document).on('click', '.player-btn', function(evt) {
         'id="stat-' + STATISTIC_TYPES[i] + '"><span>' +
         STATISTIC_TYPES[i] + '</span></button>');
     }
-  } else {
-    // is there another case?
   }
+});
+
+$(document).on('click', '.benched-player-btn', function(evt) {
+  var playerId = evt.currentTarget.id;
+  if ( BENCHED_PLAYER && BENCHED_PLAYER != playerId ) {
+    $('#' + BENCHED_PLAYER).removeClass('btn-danger');
+    $('#' + BENCHED_PLAYER).addClass('btn-outline-danger');
+  }
+  BENCHED_PLAYER = playerId;
+  $('#' + playerId).removeClass('btn-outline-danger');
+  $('#' + playerId).addClass('btn-danger');
 });
 
 $(document).on('click', '#closeDockBtn', function(evt) {
   $('#dock').hide();
   $('#dockContainer').empty();
-  selectedPlayer = null;
+  if ( ACTIVE_PLAYER ) {
+    $('#' + ACTIVE_PLAYER).removeClass('btn-success');
+    $('#' + ACTIVE_PLAYER).addClass('btn-outline-success');
+  }
+  ACTIVE_PLAYER = null;
+  if ( BENCHED_PLAYER ) {
+    $('#' + BENCHED_PLAYER).removeClass('btn-success');
+    $('#' + BENCHED_PLAYER).addClass('btn-outline-success');
+  }
+  BENCHED_PLAYER = null;
   BENCH_OPEN = false;
-})
+});
