@@ -5,6 +5,7 @@ var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
 var ACTIVE_PLAYER_ID = null;
 var BENCHED_PLAYER_ID = null;
+var START_TIME = new Date().getTime() / 1000;
 for (i=0; i<newPlayers.length; i++) {
   game.addPlayer(newPlayers[i][0], newPlayers[i][1], newPlayers[i][2]);
 }
@@ -130,7 +131,13 @@ $(document).on('click', '.player-btn', function(evt) {
       $(statButton).attr('stat', STATISTIC_TYPES[i]);
       $(statButton).on('click', function(evt) {
         //add to log (arbitrary time -- for now)
-        addToLog(playerNumber + " " + playerName, $(this).attr('stat'), "4:30");
+        var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
+        var minutes = Math.floor(secondsSinceStart / 60);
+        var seconds = Math.floor(secondsSinceStart - 60*minutes);
+        if (minutes < 10) {minutes = "0"+minutes;}
+        if (seconds < 10) {seconds = "0"+seconds;}
+        var timeString = minutes + ":" + seconds;
+        addToLog(playerNumber + " " + playerName, $(this).attr('stat'), timeString);
       });
 //      console.log(statButton);
       $('#dockContainer').append(statButton);
