@@ -120,11 +120,23 @@ $(document).on('click', '.player-btn', function(evt) {
     $('#dock').show();
     $('#dockLabel').text(playerNumber + ' - ' + playerName);
     $('#dockContainer').empty();
+    var stat;
     for (i=0; i<STATISTIC_TYPES.length; i++) {
-      var statID;
-      $('#dockContainer').append('<button type="button" class="btn btn-outline-info statistic-btn"' +
-        'id="stat-' + STATISTIC_TYPES[i] + '"><span>' +
-        STATISTIC_TYPES[i] + '</span></button>');
+      var statButton = document.createElement("button");
+      stat = STATISTIC_TYPES[i];
+      statButton.innerHTML = '<span>' + STATISTIC_TYPES[i] + '</span></button>';
+      statButton.className = 'btn btn-outline-info statistic-btn';
+      statButton.id = 'stat-' + STATISTIC_TYPES[i];
+      $(statButton).attr('stat', STATISTIC_TYPES[i]);
+      $(statButton).on('click', function(evt) {
+        //add to log (arbitrary time -- for now)
+        addToLog(playerNumber + " " + playerName, $(this).attr('stat'), "4:30");
+      });
+//      console.log(statButton);
+      $('#dockContainer').append(statButton);
+//      $('#dockContainer').append('<button type="button" class="btn btn-outline-info statistic-btn"' +
+//        'id="stat-' + STATISTIC_TYPES[i] + '"><span>' +
+//        STATISTIC_TYPES[i] + '</span></button>');
     }
   }
 });
