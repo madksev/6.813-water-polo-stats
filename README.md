@@ -5,9 +5,9 @@ TODO
 + ~~First-draft of model (Michael)~~
 + ~~First-draft of view (Maddie)~~
 + ~~Format Log as table (Parker)~~ <-- Used divs instead
-+ View stats in Log
++ View stats in Log (Mary)
 + ~~Create dock for viewing bench and holding stat buttons (Mary)~~
-+ Functionality for marking stats (Mary)
++ ~~Functionality for marking stats (Mary)~~
 + ~~Functionality for substitutions (Mary)~~
 + ~~Ability to delete stats from log (Parker)~~
 + Functionality for marking location of stat
