@@ -47,3 +47,11 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
     GOALIE_LEFT = true;
   }
 });
+
+$(document).on('click', '#viewBenchBtn', function(evt) {
+  if ( !$('#dock').is(':visible') ) {
+    $('#dock').show();
+  } else {
+    $('#dock').hide();
+  }
+});

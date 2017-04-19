@@ -3,10 +3,30 @@
 	width: 600px;
 }
 
-#pool {
+#poolDockContainer {
 	height: 45%;
 	border: 5px solid black;
 	border-bottom: 0px;
+	position: relative;
+}
+
+#pool {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+}
+
+#dock {
+	z-index: 10;
+	border-top: 3px solid black;
+	border-bottom: 5px solid black;
+	margin: 0;
+	height: 100px;
+	left: 0;
+	top: 215px;
+	background-color: #e5e7ea;
 }
 
 #players {
@@ -151,4 +171,8 @@
 	margin-left: auto;
 	height: 25px;
 	margin-top: 5px;
+}
+
+.hidden {
+	display: none;
 }
