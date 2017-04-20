@@ -59,12 +59,12 @@
   width: 100%;
   display: inline-block;
   border: 1px solid gray;
+  padding-top: 6px;
 }
 
 .logEntry-btn {
   height: 20px;
   width: 20px;
-  margin-top: 5px;
   margin-right: 20px;
   color: white;
   background-color: indianred;
@@ -74,14 +74,15 @@
 }
 
 .logEntry-player {
-  width: 50%;
+  width: 40%;
+  font-weight: 600;
   position: relative;
   float: left;
   margin-left: 2%;
 }
 
 .logEntry-action {
-  width: 30%;
+  width: 35%;
   position: relative;
   float: left;
   margin: 0;

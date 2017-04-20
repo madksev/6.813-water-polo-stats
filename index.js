@@ -143,24 +143,24 @@ $(document).on('click', '.player-btn', function(evt) {
       statButton.innerHTML = '<span>' + STATISTIC_TYPES[i] + '</span></button>';
       statButton.className = 'btn btn-outline-info statistic-btn';
       statButton.id = 'stat-' + STATISTIC_TYPES[i];
-      $(statButton).attr('stat', STATISTIC_TYPES[i]);
-      $(statButton).on('click', function(evt) {
-        //add to log (arbitrary time -- for now)
-        var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
-        var minutes = Math.floor(secondsSinceStart / 60);
-        var seconds = Math.floor(secondsSinceStart - 60*minutes);
-        if (minutes < 10) {minutes = "0"+minutes;}
-        if (seconds < 10) {seconds = "0"+seconds;}
-        var timeString = minutes + ":" + seconds;
-        addToLog(playerNumber + " " + playerName, $(this).attr('stat'), timeString);
-        MARKING_LOCATION = true;
-        markLocationReady();
-      });
-//      console.log(statButton);
+// <<<<<<< HEAD
+//       $(statButton).attr('stat', STATISTIC_TYPES[i]);
+//       $(statButton).on('click', function(evt) {
+//         //add to log (arbitrary time -- for now)
+//         var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
+//         var minutes = Math.floor(secondsSinceStart / 60);
+//         var seconds = Math.floor(secondsSinceStart - 60*minutes);
+//         if (minutes < 10) {minutes = "0"+minutes;}
+//         if (seconds < 10) {seconds = "0"+seconds;}
+//         var timeString = minutes + ":" + seconds;
+//         addToLog(playerNumber + " " + playerName, $(this).attr('stat'), timeString);
+//         MARKING_LOCATION = true;
+//         markLocationReady();
+//       });
+// //      console.log(statButton);
+// =======
+// >>>>>>> beff1a74c7e818b49317e7569454333e2a9c899a
       $('#dockContainer').append(statButton);
-//      $('#dockContainer').append('<button type="button" class="btn btn-outline-info statistic-btn"' +
-//        'id="stat-' + STATISTIC_TYPES[i] + '"><span>' +
-//        STATISTIC_TYPES[i] + '</span></button>');
     }
   }
 });
@@ -199,10 +199,21 @@ $(document).on('click', '.statistic-btn', function(evt) {
   }
   game.addStatistic(activePlayer, statistic);
   $('#closeDockBtn').trigger('click');
+  
+  //add to log (arbitrary time -- for now)
+  var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
+  var minutes = Math.floor(secondsSinceStart / 60);
+  var seconds = Math.floor(secondsSinceStart - 60*minutes);
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  var timeString = minutes + ":" + seconds;
+  addToLog(activePlayer, statistic, timeString);
 
   console.log(activePlayer.capNumber, statistic);
   console.log(game.statistics);
 
+  MARKING_LOCATION = true;
+  markLocationReady();
 });
 
 $(document).on('click', '#closeDockBtn', function(evt) {
