@@ -12,10 +12,21 @@
 
 #pool {
 	height: 100%;
+  width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	margin: 0;
+}
+
+#poolCanvas {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1;
 }
 
 #players {
@@ -121,6 +132,17 @@
 
 #switchSidesBtn {
 	margin-top: 5px;
+  position: absolute;
+  z-index: 2;
+}
+
+#markLocationDialogContainer {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  z-index: 2;
+  display: none;
 }
 
 #rightGoalieContainer {

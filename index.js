@@ -1,5 +1,6 @@
 var GOALIE_LEFT = true;
 var BENCH_OPEN = false;
+var MARKING_LOCATION = false;
 var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection-received', 'ejection-drawn'];
 var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
@@ -63,6 +64,18 @@ var switchPlayers = function(activePlayer, activePlayerState, benchedPlayer) {
   BENCHED_PLAYER_ID = null;
 }
 
+// helper function that sets up the view to mark a statistic's location
+var markLocationReady = function() {
+  console.log("showing location dialog");
+  $('#markLocationDialogContainer').show();
+}
+
+// helper function that reverts the view after location marked/skipped
+var markLocationFinished = function() {
+  $('#markLocationDialogContainer').hide();
+}
+
+
 $(document).ready(function() {
   displayActivePlayers();
 });
@@ -80,6 +93,7 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 });
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
+  markLocationFinished();
   if ( !BENCH_OPEN ) {
     $('#dock').show();
     BENCH_OPEN = true;
@@ -96,6 +110,7 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
 });
 
 $(document).on('click', '.player-btn', function(evt) {
+  markLocationFinished();
   var playerId = evt.currentTarget.id;
   if ( ACTIVE_PLAYER_ID && ACTIVE_PLAYER_ID != playerId ) {
     $('#' + ACTIVE_PLAYER_ID).removeClass('btn-success');
@@ -138,6 +153,8 @@ $(document).on('click', '.player-btn', function(evt) {
         if (seconds < 10) {seconds = "0"+seconds;}
         var timeString = minutes + ":" + seconds;
         addToLog(playerNumber + " " + playerName, $(this).attr('stat'), timeString);
+        MARKING_LOCATION = true;
+        markLocationReady();
       });
 //      console.log(statButton);
       $('#dockContainer').append(statButton);
@@ -199,3 +216,39 @@ $(document).on('click', '#closeDockBtn', function(evt) {
   BENCHED_PLAYER_ID = null;
   BENCH_OPEN = false;
 });
+
+$(document).on('click', '#poolCanvas', function(evt) {
+  evt.preventDefault();
+  evt.stopPropagation();
+  if (MARKING_LOCATION) {
+    var ctx = document.getElementById("poolCanvas").getContext("2d");
+    var canvas = $('#poolCanvas');
+    ctx.lineWidth = 1;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    var canvasOffset = canvas.offset();
+    var offsetX = canvasOffset.left;
+    var offsetY = canvasOffset.top;
+    var scrollX = $(document).scrollLeft();
+    var scrollY = $(document).scrollTop();
+    var xCoord = (evt.clientX - offsetX + scrollX)/2;
+    var yCoord = (evt.clientY - offsetY + scrollY)/2;
+
+    console.log(evt);
+
+    console.log('begin drawing');
+    ctx.beginPath();
+    ctx.arc(xCoord, yCoord, 10, 0, 2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    console.log('finished drawing');
+
+    MARKING_LOCATION = false;
+    markLocationFinished();
+
+    setTimeout(function() {
+      ctx.clearRect(0, 0, 100000, 100000);
+    }, 250)
+  }
+});
+
