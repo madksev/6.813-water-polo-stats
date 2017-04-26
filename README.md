@@ -15,11 +15,12 @@ Simple:
 + (Maddie) Log header should not scroll with entries
 + (Maddie) log should resort by time if time is edited
 
-Long:
+Longer:
 + (Michael) Mark Location should be bigger & gray out screen
 + (Michael) have cancel button for Mark Location (bottom center of pool)
 + (Michael) mark location on mouseup instead of click
 + (Parker) Undo button for deleting log entry
++ (Parker) Ipad formatting stuff
 + (Maddie) Edit log entries (make text box editable)
 + Assist dialog box when mark shot/goal
 + Add game clock display
