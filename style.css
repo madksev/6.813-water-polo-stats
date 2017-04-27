@@ -66,12 +66,7 @@
 }
 
 .logEntry-btn {
-  height: 20px;
-  width: 20px;
   margin-right: 20px;
-  color: white;
-  background-color: indianred;
-  padding: 0;
   display: inline-block;
   float: right;
 }
@@ -167,8 +162,12 @@
 	border-radius: 50%;
 	height: 72px;
 	width: 72px;
-    margin-left: 4px;
-    margin-right: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.player-btn:hover, .benched-player-btn:hover {
+	opacity: 0.6;
 }
 
 .player-name {
@@ -194,6 +193,13 @@
 	margin-top: 5px;
 }
 
+.x-btn {
+	border-radius: 25px;
+	height: 25px;
+	width: 25px;
+	padding: 0px;
+}
+
 #dock {
 	z-index: 10;
 	border-top: 3px solid black;
@@ -215,7 +221,6 @@
 	right: 0px;
 	margin-right: 5px;
 	margin-top: 5px;
-	border-radius: 25px;
 }
 
 #dockContainer {
@@ -234,4 +239,8 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: gray;
+}
+
+.btn {
+	cursor: pointer;
 }

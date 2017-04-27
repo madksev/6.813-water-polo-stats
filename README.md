@@ -4,19 +4,20 @@ TODO GR5
 ===
 Simpler:
 + (Mary) Close menu by clicking outside of it (not just X)
-+ (Mary) make all cancel buttons red circle w/ white X
-+ (Mary) label goalie, separate visually from other players
-+ (Mary) switch active player with goalie?
-+ (Mary) stat buttons color change (needs to be more visible)
-+ (Mary) more distinction between hover & selected buttons
-+ (Mary) cursor change on hover over buttons
++ (Mary) label goalie, separate visually from other active players
++ (Mary) switch active player with goalie
 + (Mary) organize stat buttons with more white space
 + (Mary) View Bench button change color when bench open and on hover
-+ <s>(Maddie) visible scroll bar on log?</s>
 + (Maddie) Format time in log as mm:ss
-+ <s>(Maddie) Log header should not scroll with entries</s>
 + (Maddie) log should resort by time if time is edited
-+ have separate column for number & name in log (improve alignment)
++ (Maddie) have separate column for number & name in log (improve alignment)
++ ~~(Maddie) visible scroll bar on log?~~
++ ~~(Maddie) Log header should not scroll with entries~~
++ ~~(Mary) cursor change on hover over buttons~~
++ ~~(Mary) make all cancel buttons red circle w/ white X~~
++ ~~(Mary) stat buttons color change (needs to be more visible)~~
++ ~~(Mary) View Bench button change color when bench open and on hover~~ (removed when open, already changes color?)
++ ~~(Mary) more distinction between hover & selected buttons~~ different enough?
 
 Longer:
 + (Michael) Mark Location should be bigger & gray out screen
