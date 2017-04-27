@@ -159,8 +159,12 @@
 	border-radius: 50%;
 	height: 72px;
 	width: 72px;
-    margin-left: 4px;
-    margin-right: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.player-btn:hover, .benched-player-btn:hover {
+	opacity: 0.6;
 }
 
 .player-name {

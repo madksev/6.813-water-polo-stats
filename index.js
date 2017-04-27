@@ -94,7 +94,6 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
   markLocationFinished();
-  // if ( !BENCH_OPEN ) {
   $('#dock').show();
   $('#viewBenchBtn').hide();
   BENCH_OPEN = true;
@@ -105,9 +104,6 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
   ACTIVE_PLAYER_ID = null;
   $('#dockLabel').text('Bench');
   displayBenchedPlayers();
-  // } else {
-  //   $('#closeDockBtn').trigger('click');
-  // }
 });
 
 $(document).on('click', '.player-btn', function(evt) {
@@ -142,7 +138,7 @@ $(document).on('click', '.player-btn', function(evt) {
       var statButton = document.createElement("button");
       stat = STATISTIC_TYPES[i];
       statButton.innerHTML = '<span>' + STATISTIC_TYPES[i] + '</span></button>';
-      statButton.className = 'btn btn-outline-info statistic-btn';
+      statButton.className = 'btn btn-outline-primary statistic-btn';
       statButton.id = 'stat-' + STATISTIC_TYPES[i];
       $('#dockContainer').append(statButton);
     }
