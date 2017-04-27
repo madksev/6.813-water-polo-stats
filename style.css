@@ -38,8 +38,9 @@
 	height: 35%;
 	border: 5px solid black;
 	border-top: 0px;
-    display: block;
-    overflow: auto;
+    display: flex;
+  	flex-direction: column;
+
 }
 
 #logHeadingContainer {
@@ -51,6 +52,8 @@
 #logTable {
   width: 100%;
   border-top: 0px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .logEntry {
@@ -221,4 +224,14 @@
 
 .hidden {
 	display: none;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: gray;
 }

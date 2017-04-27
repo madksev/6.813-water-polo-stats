@@ -12,9 +12,9 @@ Simpler:
 + (Mary) cursor change on hover over buttons
 + (Mary) organize stat buttons with more white space
 + (Mary) View Bench button change color when bench open and on hover
-+ (Maddie) visible scroll bar on log?
++ <s>(Maddie) visible scroll bar on log?</s>
 + (Maddie) Format time in log as mm:ss
-+ (Maddie) Log header should not scroll with entries
++ <s>(Maddie) Log header should not scroll with entries</s>
 + (Maddie) log should resort by time if time is edited
 + have separate column for number & name in log (improve alignment)
 
