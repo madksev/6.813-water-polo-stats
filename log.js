@@ -14,9 +14,14 @@ function createLogEntry(player, action, time) {
   var entry = document.createElement("div");
   //additional formatting goes here
   entry.className = "logEntry";
+  //number 
+  var capNumberDiv = document.createElement("div");
+  capNumberDiv.innerHTML = player.capNumber;
+  capNumberDiv.className = "logEntry-capNumber";
+  entry.appendChild(capNumberDiv);
   //player
   var playerDiv = document.createElement("div");
-  playerDiv.innerHTML = player;
+  playerDiv.innerHTML = player.firstName+" "+player.lastName;
   playerDiv.className = "logEntry-player";
   entry.appendChild(playerDiv);
   //action

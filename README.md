@@ -10,7 +10,7 @@ Simpler:
 + (Mary) View Bench button change color when bench open and on hover
 + (Maddie) Format time in log as mm:ss
 + (Maddie) log should resort by time if time is edited
-+ (Maddie) have separate column for number & name in log (improve alignment)
++ ~~(Maddie) have separate column for number & name in log (improve alignment)~~
 + ~~(Maddie) visible scroll bar on log?~~
 + ~~(Maddie) Log header should not scroll with entries~~
 + ~~(Mary) cursor change on hover over buttons~~

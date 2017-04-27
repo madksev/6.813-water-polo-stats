@@ -189,9 +189,6 @@ $(document).on('click', '.statistic-btn', function(evt) {
   var timeString = minutes + ":" + seconds;
   addToLog(activePlayer, statistic, timeString);
 
-  console.log(activePlayer.capNumber, statistic);
-  console.log(game.statistics);
-
   MARKING_LOCATION = true;
   markLocationReady();
 });

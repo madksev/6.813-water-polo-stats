@@ -71,12 +71,19 @@
   float: right;
 }
 
+.logEntry-capNumber {
+	width: 5%;
+	font-weight: 600;
+	position: relative;
+	float: left;
+	margin-left: 2%;
+}
+
 .logEntry-player {
-  width: 40%;
+  width: 35%;
   font-weight: 600;
   position: relative;
   float: left;
-  margin-left: 2%;
 }
 
 .logEntry-action {
