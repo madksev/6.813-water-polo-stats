@@ -199,7 +199,7 @@ $(document).on('click', '.statistic-btn', function(evt) {
   }
   game.addStatistic(activePlayer, statistic);
   $('#closeDockBtn').trigger('click');
-  
+
   //add to log (arbitrary time -- for now)
   var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
   var minutes = Math.floor(secondsSinceStart / 60);
@@ -262,4 +262,3 @@ $(document).on('click', '#poolCanvas', function(evt) {
     }, 250)
   }
 });
-

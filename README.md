@@ -4,12 +4,12 @@ TODO GR5
 ===
 Simpler:
 + (Mary) Close menu by clicking outside of it (not just X)
-+ (Mary) make all cancel buttons red circle w/ white X
++ ~~(Mary) make all cancel buttons red circle w/ white X~~
 + (Mary) label goalie, separate visually from other players
 + (Mary) switch active player with goalie?
 + (Mary) stat buttons color change (needs to be more visible)
 + (Mary) more distinction between hover & selected buttons
-+ (Mary) cursor change on hover over buttons
++ ~~(Mary) cursor change on hover over buttons~~
 + (Mary) organize stat buttons with more white space
 + (Mary) View Bench button change color when bench open and on hover
 + (Maddie) visible scroll bar on log?

@@ -2,7 +2,7 @@ function addToLog(player, action, time) {
   /*
   Adds a log entry to the log as a new div
   player: string or player object
-  action: string 
+  action: string
   time: string
   */
   var log = document.getElementById("logTable");
@@ -31,7 +31,7 @@ function createLogEntry(player, action, time) {
   entry.appendChild(timeDiv);
   //add delete button
   var button = document.createElement("button");
-  button.className = "btn btn-secondary btn-sm logEntry-btn";
+  button.className = "btn btn-secondary btn-sm btn-danger logEntry-btn x-btn";
   button.innerHTML = "&#10006"
   entry.appendChild(button);
   $(button).on('click', function(e, info) {
@@ -44,4 +44,3 @@ function deleteLogEntry(entry) {
   log = document.getElementById("logTable");
   log.removeChild(entry);
 }
-  

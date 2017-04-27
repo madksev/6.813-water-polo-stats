@@ -63,12 +63,7 @@
 }
 
 .logEntry-btn {
-  height: 20px;
-  width: 20px;
   margin-right: 20px;
-  color: white;
-  background-color: indianred;
-  padding: 0;
   display: inline-block;
   float: right;
 }
@@ -191,6 +186,13 @@
 	margin-top: 5px;
 }
 
+.x-btn {
+	border-radius: 25px;
+	height: 25px;
+	width: 25px;
+	padding: 0px;
+}
+
 #dock {
 	z-index: 10;
 	border-top: 3px solid black;
@@ -212,7 +214,6 @@
 	right: 0px;
 	margin-right: 5px;
 	margin-top: 5px;
-	border-radius: 25px;
 }
 
 #dockContainer {
@@ -221,4 +222,8 @@
 
 .hidden {
 	display: none;
+}
+
+.btn {
+	cursor: pointer;
 }
