@@ -23,7 +23,7 @@ Longer:
 + (Michael) Mark Location should be bigger & gray out screen
 + (Michael) have cancel button for Mark Location (bottom center of pool)
 + (Michael) mark location on mouseup instead of click
-+ (Parker) Undo button for deleting log entry
++ ~~(Parker) Undo button for deleting log entry~~
 + (Parker) Ipad formatting stuff
 + (Maddie) Edit log entries (make text box editable)
 + log player exchanges
