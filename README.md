@@ -7,7 +7,6 @@ Simpler:
 + (Mary) label goalie, separate visually from other active players
 + (Mary) switch active player with goalie
 + (Mary) organize stat buttons with more white space
-+ (Mary) View Bench button change color when bench open and on hover
 + (Maddie) Format time in log as mm:ss
 + (Maddie) log should resort by time if time is edited
 + ~~(Maddie) have separate column for number & name in log (improve alignment)~~
