@@ -69,17 +69,27 @@ var markLocationReady = function() {
   console.log("showing location dialog");
 
   // disable the rest of the interface
-  $('#players').children('*').css('opacity', 0.4);
-  $('#log').children('*').css('opacity', 0.4);
+  $('#players').children('*').css('opacity', 0.2);
+  $('#log').children('*').css('opacity', 0.2);
+
   $('.btn').prop('disabled', true);
 
-  $('#markLocationDialogContainer').show();
+  $('#skipMarkLocationBtn').prop('disabled', false);
+  $('#markLocationContainer').css('opacity', 1);
+  
+
+  $('#markLocationMessage').show();
+  $('#skipMarkLocationBtn').show();
+
+  $('#switchSidesBtn').hide();
 }
 
 // helper function that reverts the view after location marked/skipped
 var markLocationFinished = function() {
 
-  $('#markLocationDialogContainer').hide();
+  $('#markLocationMessage').hide();
+  $('#skipMarkLocationBtn').hide();
+  $('#switchSidesBtn').show();
 
   // enable the rest of the interface
   $('#players').children('*').css('opacity', 1);
@@ -215,6 +225,10 @@ $(document).on('click', '#closeDockBtn', function(evt) {
   BENCHED_PLAYER_ID = null;
   BENCH_OPEN = false;
   $('#viewBenchBtn').show();
+});
+
+$(document).on('click', '#skipMarkLocationBtn', function(evt) {
+  markLocationFinished();
 });
 
 $(document).on('click', '#poolCanvas', function(evt) {

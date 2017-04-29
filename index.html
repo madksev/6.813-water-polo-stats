@@ -32,13 +32,6 @@
         </div>
         <div id="leftSide" class="col-4">
           <button id="switchSidesBtn" type="button" class="btn btn-secondary btn-sm">Switch Sides</button>
-
-          <div id="markLocationDialogContainer" class="row">
-            Mark location
-            <!-- <div class="col-9"> -->
-            <!-- <p>Mark location</p> -->
-          <!-- </div> -->
-          </div>
         </div>
         <div class="col-4">
         </div>
@@ -57,8 +50,17 @@
       </div>
     </div> <!-- id="poolDockContainer" -->
     <div id="players" class="row">
-      <span id="playersLabel">Active Players</span>
-      <button id="viewBenchBtn" type="button" class="btn btn-secondary btn-sm">View Bench</button>
+      <div class="col-3 no-padding">
+        <span id="playersLabel">Active Players</span>
+      </div>
+      <div id="markLocationContainer" class="col-6 no-padding">
+        <span id="markLocationMessage" class="hidden">Mark Location Or Skip</span>
+        <button id="skipMarkLocationBtn" type="button" class="btn btn-secondary btn-sm hidden">Skip</button>
+      </div>
+      <div class="col-3 no-padding">
+        <span></span>
+        <button id="viewBenchBtn" type="button" class="btn btn-secondary btn-sm">View Bench</button>
+      </div>
       <div class="container" id="playersContainer">
       </div>
     </div>
