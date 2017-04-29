@@ -67,14 +67,25 @@ var switchPlayers = function(activePlayer, activePlayerState, benchedPlayer) {
 // helper function that sets up the view to mark a statistic's location
 var markLocationReady = function() {
   console.log("showing location dialog");
+
+  // disable the rest of the interface
+  $('#players').children('*').css('opacity', 0.4);
+  $('#log').children('*').css('opacity', 0.4);
+  $('.btn').prop('disabled', true);
+
   $('#markLocationDialogContainer').show();
 }
 
 // helper function that reverts the view after location marked/skipped
 var markLocationFinished = function() {
-  $('#markLocationDialogContainer').hide();
-}
 
+  $('#markLocationDialogContainer').hide();
+
+  // enable the rest of the interface
+  $('#players').children('*').css('opacity', 1);
+  $('#log').children('*').css('opacity', 1);
+  $('.btn').prop('disabled', false);
+}
 
 $(document).ready(function() {
   displayActivePlayers();

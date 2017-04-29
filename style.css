@@ -34,14 +34,21 @@
 	border: 5px solid black;
 }
 
+/*#players * {
+  opacity: 0.4;
+}*/
+
 #log {
 	height: 35%;
 	border: 5px solid black;
 	border-top: 0px;
-    display: flex;
-  	flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
+
+/*#log * {
+  opacity: 0.4;
+}*/
 
 #logHeadingContainer {
   background-color: lightgray;
