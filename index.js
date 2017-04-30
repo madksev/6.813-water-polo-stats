@@ -228,6 +228,7 @@ $(document).on('click', '#closeDockBtn', function(evt) {
 });
 
 $(document).on('click', '#skipMarkLocationBtn', function(evt) {
+  MARKING_LOCATION = false;
   markLocationFinished();
 });
 
