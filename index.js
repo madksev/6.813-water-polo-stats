@@ -63,6 +63,7 @@ var switchPlayers = function(activePlayer, activePlayerState, benchedPlayer) {
   displayBenchedPlayers();
   ACTIVE_PLAYER_ID = null;
   BENCHED_PLAYER_ID = null;
+  addSwitchToLog(activePlayer, benchedPlayer, calculateTime());
 }
 
 // helper function that sets up the view to mark a statistic's location
@@ -222,12 +223,7 @@ $(document).on('click', '.statistic-btn', function(evt) {
   $('#closeDockBtn').trigger('click');
 
   //add to log (arbitrary time -- for now)
-  var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
-  var minutes = Math.floor(secondsSinceStart / 60);
-  var seconds = Math.floor(secondsSinceStart - 60*minutes);
-  if (minutes < 10) {minutes = "0"+minutes;}
-  if (seconds < 10) {seconds = "0"+seconds;}
-  var timeString = minutes + ":" + seconds;
+  var timeString = calculateTime();
   addToLog(activePlayer, statistic, timeString);
 
   MARKING_LOCATION = true;
@@ -327,4 +323,14 @@ var freezeEdits = function() {
   $(entry).prepend('<div class="logEntry-player">'+playerName+'</div');
   $(entry).prepend('<div class="logEntry-capNumber">'+playerNum+'</div>');
 
+}
+
+var calculateTime = function() {
+  var secondsSinceStart = (new Date().getTime() / 1000) - START_TIME;
+  var minutes = Math.floor(secondsSinceStart / 60);
+  var seconds = Math.floor(secondsSinceStart - 60*minutes);
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  var timeString = minutes + ":" + seconds;
+  return timeString;
 }

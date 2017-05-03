@@ -24,8 +24,8 @@ Longer:
 + (Michael) mark location on mouseup instead of click
 + ~~(Parker) Undo button for deleting log entry~~
 + (Parker) Ipad formatting stuff
-+ (Maddie) Edit log entries (make text box editable)
-+ log player exchanges
++ ~~(Maddie) Edit log entries (make text box editable)~~
++ ~~(Maddie) log player exchanges~~
 + Assist dialog box when mark shot/goal
 + Add game clock display
 + Add play-pause button next to clock (default is paused)

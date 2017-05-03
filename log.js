@@ -49,7 +49,7 @@ function createLogEntry(player, action, time) {
       freezeEdits();
       EDITING = false;
     }
-    XLogEntry(entry);
+    XLogEntry(entry, "stat");
   });
   $(entry).attr("toDelete", false);
   return entry;
@@ -93,13 +93,12 @@ function editEntry(entry) {
 
 }
 
-function XLogEntry(entry) {
+function XLogEntry(entry, entryType) {
   //pressing the "X" button on a log entry, not same as deleting
   var cover = document.createElement("div");
-  cover.className = "logEntry-cover";
+  
   var undoDiv = document.createElement("div");
   undoDiv.innerHTML = "UNDO";
-  undoDiv.className = "logEntry-undo";
   $(undoDiv).on("click", function(e, info) {
     if (EDITING) {
       freezeEdits();
@@ -112,7 +111,17 @@ function XLogEntry(entry) {
   
   var removeDiv = document.createElement("div");
   removeDiv.innerHTML = "REMOVE";
-  removeDiv.className = "logEntry-undo";
+
+  if (entryType == "stat") {
+    cover.className = "logEntry-cover";
+    undoDiv.className = "logEntry-undo";
+    removeDiv.className = "logEntry-undo";
+  } else {
+    cover.className = "logEntry-switchCover";
+    undoDiv.className = "logEntry-undoSwitch";
+    removeDiv.className = "logEntry-undoSwitch";
+  }
+
   $(removeDiv).on("click", function(e, info) {
     if (EDITING) {
       freezeEdits();
@@ -164,5 +173,36 @@ function removeAll() {
     log.removeChild(childrenToDelete[i]);
   }
   displayRemoveAll("none");
+}
+
+function addSwitchToLog(activePlayer, benchedPlayer, time) {
+  var entry = document.createElement("div");
+  //additional formatting goes here
+  entry.className = "logEntry";
+  //switch info
+  var switchDiv = document.createElement("div");
+  switchDiv.className = "logEntry-switch";
+  switchDiv.innerHTML = benchedPlayer.capNumber+" "+benchedPlayer.lastName+
+  " went in for "+activePlayer.capNumber+" "+activePlayer.lastName;
+  entry.appendChild(switchDiv);
+  //time
+  var timeDiv = document.createElement("div");
+  timeDiv.innerHTML = time;
+  timeDiv.className = "logEntry-time";
+  entry.appendChild(timeDiv);
+  //add delete button
+  var button = document.createElement("button");
+  button.className = "btn btn-secondary btn-sm btn-danger logEntry-btn x-btn";
+  button.innerHTML = "&#10006"
+  entry.appendChild(button);
+  $(button).on('click', function(e, info) {
+    if (EDITING) {
+      freezeEdits();
+      EDITING = false;
+    }
+    XLogEntry(entry, "switch");
+  });
+  $(entry).attr("toDelete", false);
+  $('#logTable').prepend(entry);
 }
   
