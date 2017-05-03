@@ -23,12 +23,11 @@ Longer:
 + ~~(Michael) have cancel button for Mark Location (bottom center of pool)~~
 + (Michael) mark location on mouseup instead of click
 + ~~(Parker) Undo button for deleting log entry~~
-+ (Parker) Ipad formatting stuff
 + ~~(Maddie) Edit log entries (make text box editable)~~
 + ~~(Maddie) log player exchanges~~
-+ Assist dialog box when mark shot/goal
-+ Add game clock display
-+ Add play-pause button next to clock (default is paused)
++ (Parker) Assist dialog box when mark shot/goal
++ (Michael) Add game clock display
++ (Michael) Add play-pause button next to clock (default is paused)
 + Animation for switching players from bench to active
 + (if time) drag & drop to switch players
 + (if time) slide to delete like alarms on iPhone
