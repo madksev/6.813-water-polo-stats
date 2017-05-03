@@ -7,6 +7,7 @@ var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 
 var ACTIVE_PLAYER_ID = null;
 var BENCHED_PLAYER_ID = null;
 var START_TIME = new Date().getTime() / 1000;
+var EDITING = false;
 for (i=0; i<newPlayers.length; i++) {
   game.addPlayer(newPlayers[i][0], newPlayers[i][1], newPlayers[i][2]);
 }
@@ -102,6 +103,10 @@ $(document).ready(function() {
 });
 
 $(document).on('click', '#switchSidesBtn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   if (GOALIE_LEFT) {
     $('#leftGoalieContainer').empty();
     $('#rightGoalieContainer').append('Your Goalie');
@@ -114,6 +119,10 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 });
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   markLocationFinished();
   $('#dock').show();
   $('#viewBenchBtn').hide();
@@ -128,6 +137,10 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
 });
 
 $(document).on('click', '.player-btn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   markLocationFinished();
   var playerId = evt.currentTarget.id;
   if ( ACTIVE_PLAYER_ID && ACTIVE_PLAYER_ID != playerId ) {
@@ -167,7 +180,10 @@ $(document).on('click', '.player-btn', function(evt) {
 });
 
 $(document).on('click', '.benched-player-btn', function(evt) {
-
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   var playerId = evt.currentTarget.id;
   if ( BENCHED_PLAYER_ID && BENCHED_PLAYER_ID != playerId ) {
     $('#' + BENCHED_PLAYER_ID).removeClass('btn-danger');
@@ -193,6 +209,10 @@ $(document).on('click', '.benched-player-btn', function(evt) {
 });
 
 $(document).on('click', '.statistic-btn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   var statistic = evt.currentTarget.id.substring(5);
   var activePlayer = game.getPlayerWithCap(ACTIVE_PLAYER_ID.split('-')[1], 'ACTIVE');
   if ( !activePlayer ) {
@@ -215,6 +235,10 @@ $(document).on('click', '.statistic-btn', function(evt) {
 });
 
 $(document).on('click', '#closeDockBtn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+    EDITING = false;
+  }
   $('#dock').hide();
   $('#dockContainer').empty();
   if ( ACTIVE_PLAYER_ID ) {
@@ -266,3 +290,41 @@ $(document).on('click', '#poolCanvas', function(evt) {
     }, 250)
   }
 });
+
+$(document).on('click', '.logEntry-editBtn', function(evt) {
+  if (EDITING) {
+    freezeEdits();
+  }
+  EDITING = true;
+  editEntry($(evt.target).parent());
+});
+
+$(document).on('click', '.logEntry-doneBtn', function(evt) {
+  freezeEdits();
+  EDITING = false;
+});
+
+var freezeEdits = function() {
+  var player = $('.player-selector option:selected').text();
+  var playerNum = player.substr(0,player.indexOf(' '));
+  var playerName = player.substr(player.indexOf(' ')+1);
+  var action = $('.action-selector option:selected').text();
+  var time = $('.time-input').val();
+  var entry = $('.logEntry-doneBtn').parent();
+
+  var doneBtn = $(entry).find('.logEntry-doneBtn');
+  $(doneBtn).addClass('logEntry-editBtn');
+  $(doneBtn).removeClass('logEntry-doneBtn');
+  $(doneBtn).text('Edit');
+
+  $(entry).find('.time-input').remove();
+  $(entry).prepend('<div class="logEntry-time">'+time+'</div>');
+
+  $(entry).find('.action-selector').remove();
+  $(entry).prepend('<div class="logEntry-action">'+action+'</div>');
+
+  $(entry).find('.player-selector').remove();
+  $(entry).prepend('<div class="logEntry-player">'+playerName+'</div');
+  $(entry).prepend('<div class="logEntry-capNumber">'+playerNum+'</div>');
+
+}

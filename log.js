@@ -34,16 +34,63 @@ function createLogEntry(player, action, time) {
   timeDiv.innerHTML = time;
   timeDiv.className = "logEntry-time";
   entry.appendChild(timeDiv);
+  //add edit button
+  var editBtn = document.createElement("button");
+  editBtn.className = "btn btn-secondary btn-sm logEntry-editBtn";
+  editBtn.innerHTML = "Edit";
+  entry.appendChild(editBtn);
   //add delete button
   var button = document.createElement("button");
   button.className = "btn btn-secondary btn-sm btn-danger logEntry-btn x-btn";
   button.innerHTML = "&#10006"
   entry.appendChild(button);
   $(button).on('click', function(e, info) {
+    if (EDITING) {
+      freezeEdits();
+      EDITING = false;
+    }
     XLogEntry(entry);
   });
   $(entry).attr("toDelete", false);
   return entry;
+}
+
+function editEntry(entry) {
+  var selectedNum = $(entry).find('.logEntry-capNumber').text();
+  var selectedPlayer = $(entry).find('.logEntry-player').text();
+  var selectedAction = $(entry).find('.logEntry-action').text();
+  var currentTime = $(entry).find('.logEntry-time').text();
+  
+  var editBtn = $(entry).find('.logEntry-editBtn');
+  $(editBtn).addClass('logEntry-doneBtn');
+  $(editBtn).removeClass('logEntry-editBtn');
+  $(editBtn).text('Done');
+
+  $(entry).find('.logEntry-time').remove();
+  $(entry).prepend('<input type="text" class="form-control time-input" value='+currentTime+'>');
+
+  $(entry).find('.logEntry-action').remove();
+  $(entry).prepend('<select class=action-selector><option>'+selectedAction+'</option></select>');
+  for (i=0; i<STATISTIC_TYPES.length; i++) {
+    if (STATISTIC_TYPES[i] !== selectedAction) {
+      $('.action-selector').append('<option>'+STATISTIC_TYPES[i]+'</option>');
+    }
+  }
+
+  $(entry).find('.logEntry-capNumber').remove();
+  $(entry).find('.logEntry-player').remove();
+  $(entry).prepend('<select class="player-selector"><option>'+selectedNum+' '+selectedPlayer+'</option></select>');
+  var goalie = game.getPlayersWithState('GOALKEEPER')[0];
+  if (goalie.capNumber !== parseInt(selectedNum)) {
+    $('.player-selector').append('<option>'+goalie.capNumber+' '+goalie.firstName+ ' '+goalie.lastName+'</option>');
+  }
+  var activePlayers = game.getPlayersWithState('ACTIVE');
+  for (i=0; i<activePlayers.length; i++) {
+    if (activePlayers[i].capNumber !== parseInt(selectedNum)) {
+      $('.player-selector').append('<option>'+activePlayers[i].capNumber+' '+activePlayers[i].firstName+ ' '+activePlayers[i].lastName+'</option>');
+    }
+  }
+
 }
 
 function XLogEntry(entry) {
@@ -54,6 +101,10 @@ function XLogEntry(entry) {
   undoDiv.innerHTML = "UNDO";
   undoDiv.className = "logEntry-undo";
   $(undoDiv).on("click", function(e, info) {
+    if (EDITING) {
+      freezeEdits();
+      EDITING = false;
+    }
     entry.removeChild(cover);
     $(entry).attr("toDelete", false);
     checkForEntriesToRemove();
@@ -63,6 +114,10 @@ function XLogEntry(entry) {
   removeDiv.innerHTML = "REMOVE";
   removeDiv.className = "logEntry-undo";
   $(removeDiv).on("click", function(e, info) {
+    if (EDITING) {
+      freezeEdits();
+      EDITING = false;
+    }
     deleteLogEntry(entry);
     checkForEntriesToRemove();
   });
