@@ -78,7 +78,7 @@ var markLocationReady = function() {
 
   $('#skipMarkLocationBtn').prop('disabled', false);
   $('#markLocationContainer').css('opacity', 1);
-  
+
 
   $('#markLocationMessage').show();
   $('#skipMarkLocationBtn').show();
@@ -101,6 +101,24 @@ var markLocationFinished = function() {
 
 $(document).ready(function() {
   displayActivePlayers();
+});
+
+$(document).on('click', function(evt) {
+  if ( $('#dock').is(':visible') ) {
+    var id = evt.target.id;
+    var className = evt.target.className;
+    var offsetParent = evt.target.offsetParent
+    if (offsetParent) {
+      var parentId = offsetParent.id;
+      if ( !( parentId=="dockContainer" || parentId=="playersContainer" || id=='dock' || id=='dockContainer' || id=="dockLabel")) {
+        $('#closeDockBtn').trigger('click');
+      }
+    } else {
+      if ( !( id=="viewBenchBtn" )) {
+        $('#closeDockBtn').trigger('click');
+      }
+    }
+  }
 });
 
 $(document).on('click', '#switchSidesBtn', function(evt) {
@@ -253,9 +271,9 @@ $(document).on('click', '#skipMarkLocationBtn', function(evt) {
 });
 
 $(document).on('click', '#poolCanvas', function(evt) {
-  evt.preventDefault();
-  evt.stopPropagation();
   if (MARKING_LOCATION) {
+    evt.preventDefault();
+    evt.stopPropagation();
     var ctx = document.getElementById("poolCanvas").getContext("2d");
     var canvas = $('#poolCanvas');
     ctx.lineWidth = 1;
