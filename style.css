@@ -272,9 +272,18 @@
 }
 
 .statistic-btn {
-	margin-left: 2px;
-	margin-right: 2px;
-	margin-bottom: 2px;
+	margin-bottom: 3px;
+}
+
+.statContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+#dockContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
 
 #playersLabel {
@@ -330,10 +339,6 @@
 	right: 0px;
 	margin-right: 5px;
 	margin-top: 5px;
-}
-
-#dockContainer {
-	text-align: center;
 }
 
 .hidden {

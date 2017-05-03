@@ -1,7 +1,7 @@
 var GOALIE_LEFT = true;
 var BENCH_OPEN = false;
 var MARKING_LOCATION = false;
-var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection-received', 'ejection-drawn'];
+var STATISTIC_TYPES = ['goal', 'shot', 'assist', 'block', 'steal', 'turnover', 'ejection-drawn', 'ejection-received'];
 var game = new Game();
 var newPlayers = [['Lily', 'Chen', 1], ['Beth', 'Gates', 3], ['Abby', 'Wilson', 4], ['Jane', 'Lee', 5], ['Grace','Jones', 7], ['Alex', 'Lange', 10], ['Danielle', 'Flowers', 11], ['Sarah', 'Hunt', 12], ['Marie', 'Knowles', 14], ['Claire', 'Davis', 15], ['Cindy', 'Xiang', 16]];
 var ACTIVE_PLAYER_ID = null;
@@ -193,13 +193,19 @@ $(document).on('click', '.player-btn', function(evt) {
     $('#dockLabel').text('');
     $('#dockContainer').empty();
     var stat;
+    var statContainer;
     for (i=0; i<STATISTIC_TYPES.length; i++) {
       var statButton = document.createElement("button");
       stat = STATISTIC_TYPES[i];
       statButton.innerHTML = '<span>' + STATISTIC_TYPES[i] + '</span></button>';
       statButton.className = 'btn btn-outline-primary statistic-btn';
       statButton.id = 'stat-' + STATISTIC_TYPES[i];
-      $('#dockContainer').append(statButton);
+
+      if ( i/2 == Math.floor(i/2) ) {
+        statContainer = '<div class= "statContainer" id="statContainer-' + Math.floor(i/2) + '"></div>';
+        $( '#dockContainer' ).append(statContainer);
+      }
+      $( '#statContainer-' + Math.floor(i/2) ).append(statButton);
     }
   }
 });

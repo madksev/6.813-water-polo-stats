@@ -5,8 +5,8 @@ TODO GR5
 Simpler:
 + ~~(Mary) Close menu by clicking outside of it (not just X)~~
 + (Mary) label goalie, separate visually from other active players
-+ (Mary) switch active player with goalie
-+ (Mary) organize stat buttons with more white space
++ (Mary) switch active player with goalie [could be confusing visually as is]
++ ~~(Mary) organize stat buttons with more white space~~
 + ~~(Maddie) Format time in log as mm:ss~~
 + (Maddie) log should resort by time if time is edited
 + ~~(Maddie) have separate column for number & name in log (improve alignment)~~
