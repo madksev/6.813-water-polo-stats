@@ -15,7 +15,7 @@ Simpler:
 + ~~(Mary) cursor change on hover over buttons~~
 + ~~(Mary) make all cancel buttons red circle w/ white X~~
 + ~~(Mary) stat buttons color change (needs to be more visible)~~
-+ ~~(Mary) View Bench button change color when bench open and on hover~~ (removed when open, already changes color?)
++ ~~(Mary) View Bench button change color when bench open and on hover~~
 + ~~(Mary) more distinction between hover & selected buttons~~ different enough?
 
 Longer:
