@@ -46,7 +46,9 @@ function createLogEntry(player, action, time) {
   entry.appendChild(button);
   $(button).on('click', function(e, info) {
     if (EDITING) {
-      freezeEdits();
+      if (!freezeEdits()) {
+        return;
+      }
       EDITING = false;
     }
     XLogEntry(entry, "stat");
@@ -101,7 +103,9 @@ function XLogEntry(entry, entryType) {
   undoDiv.innerHTML = "UNDO";
   $(undoDiv).on("click", function(e, info) {
     if (EDITING) {
-      freezeEdits();
+      if (!freezeEdits()) {
+        return;
+      }
       EDITING = false;
     }
     entry.removeChild(cover);
@@ -124,7 +128,9 @@ function XLogEntry(entry, entryType) {
 
   $(removeDiv).on("click", function(e, info) {
     if (EDITING) {
-      freezeEdits();
+      if (!freezeEdits()) {
+        return;
+      }
       EDITING = false;
     }
     deleteLogEntry(entry);
@@ -197,7 +203,9 @@ function addSwitchToLog(activePlayer, benchedPlayer, time) {
   entry.appendChild(button);
   $(button).on('click', function(e, info) {
     if (EDITING) {
-      freezeEdits();
+      if (!freezeEdits()) {
+        return;
+      }
       EDITING = false;
     }
     XLogEntry(entry, "switch");

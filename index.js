@@ -123,7 +123,9 @@ $(document).on('click', function(evt) {
 
 $(document).on('click', '#switchSidesBtn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   if (GOALIE_LEFT) {
@@ -139,7 +141,9 @@ $(document).on('click', '#switchSidesBtn', function(evt) {
 
 $(document).on('click', '#viewBenchBtn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   markLocationFinished();
@@ -157,7 +161,9 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
 
 $(document).on('click', '.player-btn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   markLocationFinished();
@@ -200,7 +206,9 @@ $(document).on('click', '.player-btn', function(evt) {
 
 $(document).on('click', '.benched-player-btn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   var playerId = evt.currentTarget.id;
@@ -229,7 +237,9 @@ $(document).on('click', '.benched-player-btn', function(evt) {
 
 $(document).on('click', '.statistic-btn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   var statistic = evt.currentTarget.id.substring(5);
@@ -250,7 +260,9 @@ $(document).on('click', '.statistic-btn', function(evt) {
 
 $(document).on('click', '#closeDockBtn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
     EDITING = false;
   }
   $('#dock').hide();
@@ -307,14 +319,18 @@ $(document).on('click', '#poolCanvas', function(evt) {
 
 $(document).on('click', '.logEntry-editBtn', function(evt) {
   if (EDITING) {
-    freezeEdits();
+    if (!freezeEdits()) {
+      return;
+    }
   }
   EDITING = true;
   editEntry($(evt.target).parent());
 });
 
 $(document).on('click', '.logEntry-doneBtn', function(evt) {
-  freezeEdits();
+  if (!freezeEdits()) {
+      return;
+    }
   EDITING = false;
 });
 
@@ -326,12 +342,24 @@ var freezeEdits = function() {
   var time = $('.time-input').val();
   var entry = $('.logEntry-doneBtn').parent();
 
+  var timeArr = time.split(":");
+  var minutes = parseInt(timeArr[0]);
+  var seconds = parseInt(timeArr[1]);
+  if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || minutes > 7 || seconds < 0 || seconds > 59) {
+    $('.time-input').focus();
+    $('.time-input:focus').css('border-color', 'red');
+    return false;
+  }
+
   var doneBtn = $(entry).find('.logEntry-doneBtn');
   $(doneBtn).addClass('logEntry-editBtn');
   $(doneBtn).removeClass('logEntry-doneBtn');
   $(doneBtn).text('Edit');
 
   $(entry).find('.time-input').remove();
+  if (seconds < 10) {
+    time = minutes+":0"+seconds;
+  }
   $(entry).prepend('<div class="logEntry-time">'+time+'</div>');
 
   $(entry).find('.action-selector').remove();
@@ -340,6 +368,7 @@ var freezeEdits = function() {
   $(entry).find('.player-selector').remove();
   $(entry).prepend('<div class="logEntry-player">'+playerName+'</div');
   $(entry).prepend('<div class="logEntry-capNumber">'+playerNum+'</div>');
+  return true;
 
 }
 
