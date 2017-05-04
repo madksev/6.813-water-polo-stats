@@ -286,12 +286,14 @@
 .statContainer {
 	display: flex;
 	flex-direction: column;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 #dockContainer {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: center;
 }
 
 #playersLabel {
