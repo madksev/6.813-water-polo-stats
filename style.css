@@ -29,6 +29,14 @@
   z-index: 1;
 }
 
+#verticalLine {
+	display: inline-block;
+	background-color: black;
+	width: 2px;
+	height: 72px;
+	position: absolute;
+}
+
 #players {
 	height: 20%;
 	border: 5px solid black;
@@ -258,7 +266,7 @@
 	height: 72px;
 	width: 72px;
   margin-left: 4px;
-  margin-right: 4px;
+  margin-right: 3px;
 }
 
 .player-btn:hover, .benched-player-btn:hover {

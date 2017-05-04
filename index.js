@@ -34,6 +34,7 @@ var displayActivePlayers = function() {
     'id="player-' + goalie.capNumber + '-' + goalie.lastName + '"><span>'+
     goalie.capNumber+'</span><br><span class="player-name">'+
     goalie.lastName+'</span></button>');
+  $('#playersContainer').append('<div id="verticalLine" width="2">');
 
   var activePlayers = game.getPlayersWithState('ACTIVE');
   for (i=0; i<activePlayers.length; i++) {
