@@ -8,6 +8,7 @@ var ACTIVE_PLAYER_ID = null;
 var BENCHED_PLAYER_ID = null;
 var START_TIME = new Date().getTime() / 1000;
 var EDITING = false;
+var ASSIST_FOR_PLAYER = null;
 for (i=0; i<newPlayers.length; i++) {
   game.addPlayer(newPlayers[i][0], newPlayers[i][1], newPlayers[i][2]);
 }
@@ -92,11 +93,29 @@ var markLocationFinished = function() {
   $('#markLocationMessage').hide();
   $('#skipMarkLocationBtn').hide();
   $('#switchSidesBtn').show();
-
+  
   // enable the rest of the interface
   $('#players').children('*').css('opacity', 1);
   $('#log').children('*').css('opacity', 1);
   $('.btn').prop('disabled', false);
+  
+  //pulls up assist dialog if stat was goal
+  if (ASSIST_FOR_PLAYER) {
+    $('#dock').show();
+    $('#dockLabel').text('Assist?');
+    $('#dockContainer').empty();
+    var activePlayers = game.getPlayersWithState('ACTIVE');
+    for (i=0; i<activePlayers.length; i++) {
+      if (activePlayers[i] != ASSIST_FOR_PLAYER) {
+        $('#dockContainer').append('<button type="button" class="btn btn-outline-success player-btn player-assist-btn"' +
+        'id="player-' + activePlayers[i].capNumber + '-' + activePlayers[i].lastName + '"><span>'+
+        activePlayers[i].capNumber+'</span><br><span class="player-name">'+
+        activePlayers[i].lastName+'</span></button>');
+      }
+    }
+    ASSIST_FOR_PLAYER = false;
+  }
+  
 }
 
 $(document).ready(function() {
@@ -262,6 +281,20 @@ $(document).on('click', '.statistic-btn', function(evt) {
 
   MARKING_LOCATION = true;
   markLocationReady();
+  
+  //pull up assist dialogue?
+  if (statistic == "goal") {
+    ASSIST_FOR_PLAYER = activePlayer;
+  }
+});
+
+$(document).on('click', '.player-assist-btn', function(evt) {
+  var playerId = evt.currentTarget.id;
+  var playerNumber = playerId.split('-')[1];
+  var playerName = playerId.split('-')[2];
+  var player = new Player(playerId, playerName, "", playerNumber);
+  var timeString = calculateTime();
+  addToLog(player, "assist", timeString);
 });
 
 $(document).on('click', '#closeDockBtn', function(evt) {
