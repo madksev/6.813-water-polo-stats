@@ -88,6 +88,18 @@ var markLocationReady = function() {
   $('#switchSidesBtn').hide();
 }
 
+var changeDockCloseButton = function(isX) {
+  //switches dock close button between "X" to "None"
+  var closeButton = document.getElementById("closeDockBtn")
+  if (isX) {
+    closeButton.className = "btn btn-secondary btn-sm btn-danger x-btn";
+    closeButton.innerHTML = "&#10006";
+  } else { //change to say "None"
+    closeButton.className = "btn btn-secondary btn-sm btn-danger";
+    closeButton.innerHTML = "None";
+  }
+}
+
 // helper function that reverts the view after location marked/skipped
 var markLocationFinished = function() {
 
@@ -105,6 +117,7 @@ var markLocationFinished = function() {
     $('#dock').show();
     $('#dockLabel').text('Assist?');
     $('#dockContainer').empty();
+    changeDockCloseButton(false);
     var activePlayers = game.getPlayersWithState('ACTIVE');
     for (i=0; i<activePlayers.length; i++) {
       if (activePlayers[i] != ASSIST_FOR_PLAYER) {
@@ -167,6 +180,7 @@ $(document).on('click', '#viewBenchBtn', function(evt) {
     EDITING = false;
   }
   markLocationFinished();
+  changeDockCloseButton(true);
   $('#dock').show();
   $('#viewBenchBtn').hide();
   BENCH_OPEN = true;
@@ -209,6 +223,7 @@ $(document).on('click', '.player-btn', function(evt) {
       }
     } // else do nothing b/c no benched player selected
   } else {
+    changeDockCloseButton(true);
     $('#dock').show();
     $('#dockLabel').text('');
     $('#dockContainer').empty();
