@@ -329,6 +329,10 @@
 	padding: 0px;
 }
 
+.none-btn {
+    z-index: 3;
+}
+
 #dock {
 	z-index: 10;
 	border-top: 3px solid black;

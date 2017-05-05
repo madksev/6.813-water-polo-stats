@@ -95,7 +95,7 @@ var changeDockCloseButton = function(isX) {
     closeButton.className = "btn btn-secondary btn-sm btn-danger x-btn";
     closeButton.innerHTML = "&#10006";
   } else { //change to say "None"
-    closeButton.className = "btn btn-secondary btn-sm btn-danger";
+    closeButton.className = "btn btn-secondary btn-sm btn-danger none-btn";
     closeButton.innerHTML = "None";
   }
 }
