@@ -5,7 +5,6 @@ TODO GR5
 Simpler:
 + ~~(Mary) Close menu by clicking outside of it (not just X)~~
 + ~~(Mary) label goalie, separate visually from other active players~~
-+ (Mary) switch active player with goalie [could be confusing visually as is]
 + ~~(Mary) organize stat buttons with more white space~~
 + ~~(Maddie) Format time in log as mm:ss~~
 + (Maddie) log should resort by time if time is edited
@@ -25,9 +24,12 @@ Longer:
 + ~~(Parker) Undo button for deleting log entry~~
 + ~~(Maddie) Edit log entries (make text box editable)~~
 + ~~(Maddie) log player exchanges~~
-+ (Parker) Assist dialog box when mark shot/goal
-+ (Michael) Add game clock display
-+ (Michael) Add play-pause button next to clock (default is paused)
++ ~~(Parker) Assist dialog box when mark shot/goal~~
+
+Not Doing:
++ switch active player with goalie [could be confusing visually as is]
++ Add game clock display
++ Add play-pause button next to clock (default is paused)
 + Animation for switching players from bench to active
 + (if time) drag & drop to switch players
 + (if time) slide to delete like alarms on iPhone
