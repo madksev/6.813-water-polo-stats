@@ -400,7 +400,7 @@ var freezeEdits = function() {
   var timeArr = time.split(":");
   var minutes = parseInt(timeArr[0]);
   var seconds = parseInt(timeArr[1]);
-  if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || minutes > 7 || seconds < 0 || seconds > 59) {
+  if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || minutes > 99 || seconds < 0 || seconds > 59) {
     $('.time-input').focus();
     $('.time-input:focus').css('border-color', 'red');
     return false;
