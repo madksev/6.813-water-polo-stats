@@ -327,6 +327,7 @@
 	height: 25px;
 	width: 25px;
 	padding: 0px;
+    z-index: 3;
 }
 
 .none-btn {
