@@ -41,3 +41,4 @@ For GR5 Presentation:
 + clear all log button is a safety issue
 + red/green color combo bad for color blind users, but we have the players in separate rows so it's OK
 + log switching sides suggested, but that only happens at half, and we included that button for visual feedback more than anything
+# 6.813-water-polo-stats
