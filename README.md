@@ -1,4 +1,25 @@
-# 6813-project
+# 6.813-water-polo-stats
+## 6813-project
+
+Implementation of a semester-long project focused on user interface design.  The project went through a series of iterative steps focused on user-centered design:
+
+1. Analysis
+	* Problem definition and scope
+	* Classify user groups
+	* User interviews
+2. Design
+	* Several paper sketches
+3. Paper Prototype
+	* Large, interactive paper prototype
+	* User testing
+4. Computer Prototype
+	* High fidelity in look and feel
+	* Low fidelity in breadth and depth
+5. Implementation
+	* Final frontend contained here
+6. User Testing
+	* Controlled environment and procedure for target users
+
 
 TODO GR5
 ===
@@ -41,4 +62,4 @@ For GR5 Presentation:
 + clear all log button is a safety issue
 + red/green color combo bad for color blind users, but we have the players in separate rows so it's OK
 + log switching sides suggested, but that only happens at half, and we included that button for visual feedback more than anything
-# 6.813-water-polo-stats
+
